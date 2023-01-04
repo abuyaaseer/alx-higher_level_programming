@@ -5,10 +5,13 @@
 
 class Rectangle:
     """ class rectangle"""
+    number_of_instances = 0
+
     def __init__(self, width=0, height=0):
         """ Instantiation with optional width and height"""
         self.width = width
         self.height = height
+        type(self).number_of_instances += 1
 
     @property
     def width(self):
@@ -18,7 +21,7 @@ class Rectangle:
 
     @property
     def height(self):
-        """ height
+        """height
         """
         return self.__height
 
@@ -68,4 +71,5 @@ class Rectangle:
     def __del__(self):
         """Print the message when an instance of Rectangle is deleted
         """
+        type(self).number_of_instances -= 1
         print("Bye rectangle...")
