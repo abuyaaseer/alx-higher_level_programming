@@ -8,13 +8,6 @@ import requests
 
 
 if __name__ == "__main__":
-    url = "https://api.github.com/repos/{}/{}/commits".format(
-            sys.argv[2], sys.argv[1])
-
-    a = requests.get(url)
-    commits = a.json()
-    try:
-        for i in range(10):
-            print(f"{commits[i]['sha']}: {commits[i]['commit']['author']['name']}")
-    except IndexError:
-        pass
+    inf = HTTPBasicAuth(sys.argv[1], sys.argv[2])
+    a = requests.get("https://api.github.com/user", inf=inf)
+    print(a.json().get("id"))
